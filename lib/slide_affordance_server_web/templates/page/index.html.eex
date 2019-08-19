@@ -32,11 +32,4 @@
       </li>
     </ul>
   </article>
-  <article class="column">
-    Config:
-    <pre>
-      <%= :slide_affordance_server |> Application.get_env(SlideAffordanceServerWeb.Endpoint) |> inspect(pretty: true) %>
-      <%= :slide_affordance_server |> Application.get_env(SlideAffordanceServer.Repo) |> inspect(pretty: true) %>
-    </pre>
-  </article>
 </section>
