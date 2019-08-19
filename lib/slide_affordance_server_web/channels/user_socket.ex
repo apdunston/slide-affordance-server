@@ -1,6 +1,8 @@
 defmodule SlideAffordanceServerWeb.UserSocket do
   use Phoenix.Socket
 
+  transport(:websocket, Phoenix.Transports.WebSocket, timeout: 45_000)
+
   ## Channels
   # channel "room:*", SlideAffordanceServerWeb.RoomChannel
   # channel "website", SomeChannelModule would stop the weird warnings.
