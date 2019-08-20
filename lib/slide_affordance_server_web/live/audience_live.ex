@@ -6,7 +6,7 @@ defmodule SlideAffordanceServerWeb.AudienceLive do
   def render(assigns) do
     ~L"""
     <div aria-live="assertive">
-      Caption: <%= @caption %>
+      <%= @caption %>
     </div>
     """
   end
