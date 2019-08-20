@@ -101,7 +101,19 @@ defmodule SlideAffordanceServer.Deck do
       {56, "Quality is the hidden ingredient in all of our products. But it’s consumed just like everything else. -Mike Baldwin"},
       {57, "QA Professionals help create software"},
       {58, "Ant: And..."},
-      {59, "Ant: I mean throw a bullet on that and give me three more."}
+      {59, "Ant: I mean throw a bullet on that and give me three more."},
+      {60, "QA professionals. 1. Help create software"},
+      {61, "2. Keep the mental model of the product"},
+      {62, "3. Advocate for users"},
+      {63, "4. Act as morale centers"},
+      {64, "Team morale seems to directly correlate with software quality. -Jenny Bramble"},
+      {65, "Ant: Now tell dear listeners what they should be doing."},
+      {66, "Subheading: Listen on purpose"},
+      {67, "Story time"},
+      {68, "Ant: You don't say"},
+      {69, "company hierarchy: top = sociopaths, middle = clueless, bottom = losers"},
+      {70, "cartoon business-person listening to a developer"},
+      {71, "Movie posters: Tron, War Games, Hackers, The Matrix"}
     ]
   end
 end

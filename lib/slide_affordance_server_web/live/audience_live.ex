@@ -8,9 +8,6 @@ defmodule SlideAffordanceServerWeb.AudienceLive do
     <div aria-live="assertive">
       Caption: <%= @caption %>
     </div>
-    <div>Slide: <%= @slide_number %>
-    <button phx-click="back" class="minus">back</button>
-    <button phx-click="forward" class="minus">forward</button>
     """
   end
 
@@ -25,16 +22,6 @@ defmodule SlideAffordanceServerWeb.AudienceLive do
       |> update(:caption, fn _ -> Deck.current end)
       |> update(:slide_number, fn _ -> Deck.slide_number end)
 
-    {:noreply, socket}
-  end
-
-  def handle_event("forward", _, socket) do
-    Deck.forward()
-    {:noreply, socket}
-  end
-
-  def handle_event("back", _, socket) do
-    Deck.back()
     {:noreply, socket}
   end
 end
