@@ -20,4 +20,9 @@ defmodule SlideAffordanceServerWeb.PageController do
     Deck.back()
     json(conn, %{status: :ok})
   end
+
+  def reset(conn, _) do
+    Deck.reset()
+    json(conn, %{status: :ok})
+  end
 end

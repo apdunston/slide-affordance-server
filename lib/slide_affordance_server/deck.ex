@@ -20,7 +20,8 @@ defmodule SlideAffordanceServer.Deck do
   end
 
   def start_link(_opts) do
-    {:ok, pid} = Agent.start_link(fn -> %DeckData{captions: captions() |> tuples_to_array(), max: 226} end)
+    deck_data = %DeckData{captions: captions() |> tuples_to_map(), max: 226}
+    {:ok, pid} = Agent.start_link(fn -> deck_data end)
     Process.register(pid, :deck)
     {:ok, pid}
   end
@@ -28,6 +29,8 @@ defmodule SlideAffordanceServer.Deck do
   def current do
     Agent.get(:deck, fn data -> get_caption(data) end)
   end
+
+  def slide_number, do: Agent.get(:deck, fn %{slide_number: num} -> num end)
 
   def forward, do: Agent.update(:deck, &forward/1)
 
@@ -45,14 +48,14 @@ defmodule SlideAffordanceServer.Deck do
     Agent.update(:deck, fn deck -> %{deck | slide_number: 1} end)
   end
 
-  @spec tuples_to_array(list({integer, String.t()})) :: list(nil | String.t())
-  defp tuples_to_array(tuples) do
-    Enum.reduce(tuples, [], fn {index, caption}, acc -> List.insert_at(acc, index, caption) end)
+  @spec tuples_to_map(list({integer, String.t()})) :: map
+  defp tuples_to_map(tuples) do
+    Enum.reduce(tuples, %{}, fn {index, caption}, acc -> Map.put(acc, index, caption) end)
   end
 
   defp get_caption(%{slide_number: slide_number, captions: captions}), do: get_caption(slide_number, captions)
   defp get_caption(num, _captions) when num < 1, do: @no_caption
-  defp get_caption(num, captions), do: Enum.at(captions, num, get_caption(num-1, captions))
+  defp get_caption(num, captions), do: Map.get(captions, num, get_caption(num-1, captions))
 
   defp captions do
     [
@@ -83,7 +86,22 @@ defmodule SlideAffordanceServer.Deck do
       {36, "a giant cartoon ant"},
       {37, "Ant: Hiya! I'm Sidney."},
       {38, "Ant: Because ants are amazing!"},
-      {39, "And maybe because you told your artist to have fun with this one."}
+      {39, "And maybe because you told your artist to have fun with this one."},
+      {40, "Section 1. Listen to QA. They're experts in their field."},
+      {41, "What do testers do?"},
+      {42, "Ant: He's going to say we break things."},
+      {43, "Ant: We do not break things."},
+      {44, "Ant: Mysteries..."},
+      {48, "developer and tester"},
+      {49, "lone developer"},
+      {50, "user"},
+      {51, "All software is collaboration."},
+      {52, "Users are the least qualified, most expensive testers."},
+      {53, "Developer brings optimism. Tester brings skepticism."},
+      {56, "Quality is the hidden ingredient in all of our products. But it’s consumed just like everything else. -Mike Baldwin"},
+      {57, "QA Professionals help create software"},
+      {58, "Ant: And..."},
+      {59, "Ant: I mean throw a bullet on that and give me three more."}
     ]
   end
 end
