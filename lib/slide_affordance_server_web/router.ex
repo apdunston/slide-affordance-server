@@ -21,6 +21,7 @@ defmodule SlideAffordanceServerWeb.Router do
     get "/audience", PageController, :audience
     get "/forward", PageController, :forward
     get "/back", PageController, :back
+    get "/reset", PageController, :reset
   end
 
   # Other scopes may use custom stacks.
